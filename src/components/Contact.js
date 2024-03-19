@@ -3,6 +3,7 @@ import { Container, Row, Col } from "react-bootstrap";
 import contactImg from "../assets/img/contact-img.svg";
 import 'animate.css';
 import TrackVisibility from 'react-on-screen';
+import axios from "axios";
 
 export const Contact = () => {
   const formInitialDetails = {
@@ -26,6 +27,7 @@ export const Contact = () => {
   const handleSubmit = async (e) => {
     e.preventDefault();
     setButtonText("Sending...");
+    /*
     let response = await fetch("https://airy-bevel-nannyberry.glitch.me:5000/contact", {
       method: "POST",
       headers: {
@@ -33,14 +35,19 @@ export const Contact = () => {
       },
       body: JSON.stringify(formDetails),
     });
+    */
+
+    let response = await axios.post("https://airy-bevel-nannyberry.glitch.me:5000/contact",formDetails);
     setButtonText("Send");
-    let result = await response.json();
+    /*let result = await response.json();
     setFormDetails(formInitialDetails);
     if (result.code == 200) {
       setStatus({ succes: true, message: 'Message sent successfully'});
     } else {
       setStatus({ succes: false, message: 'Something went wrong, please try again later.'});
-    }
+    }*/
+
+    console.log(response);
   };
 
   return (
