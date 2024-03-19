@@ -27,25 +27,16 @@ export const Contact = () => {
   const handleSubmit = async (e) => {
     e.preventDefault();
     setButtonText("Sending...");
-    /*
-    let response = await fetch("https://airy-bevel-nannyberry.glitch.me:5000/contact", {
-      method: "POST",
-      headers: {
-        "Content-Type": "application/json;charset=utf-8",
-      },
-      body: JSON.stringify(formDetails),
-    });
-    */
+    
 
-    let response = await axios.post("https://airy-bevel-nannyberry.glitch.me:5000/contact",formDetails);
+    let response = await axios.post("https://airy-bevel-nannyberry.glitch.me/contact",formDetails);
     setButtonText("Send");
-    /*let result = await response.json();
     setFormDetails(formInitialDetails);
-    if (result.code == 200) {
+    if (response.data.code == 200) {
       setStatus({ succes: true, message: 'Message sent successfully'});
     } else {
       setStatus({ succes: false, message: 'Something went wrong, please try again later.'});
-    }*/
+    }
 
     console.log(response);
   };
